@@ -46,4 +46,69 @@ software side first.
 
 ### Software
 
-**FINISH THIS SECTION**
+On the software side, we have two tasks: steering the car and setting the throttle. Contrary to what some
+of you might think, I will not use *just* a neural network to steer the car and set the throttle of the car,
+because it is impossible to make a neural network that can take in raw images and output steering angles.
+
+![can't throw a neural network at everything nvidia](/img/cant_throw_nn.png)
+
+Actually, Nvidia showed in [this paper](https://arxiv.org/abs/1604.07316)
+and [this blogpost](https://devblogs.nvidia.com/deep-learning-self-driving-cars/)
+that end-to-end neural networks can do just that–take in raw images and output steering angles.
+But it is not exactly a good idea to just throw a neural network at every problem. This is because neural
+networks are complicated functions and their behavior is pretty much impossible to predict when it encounters
+an input that is far from the training data, i.e., there is no easy way to predict how a neural network will
+extrapolate beyond the training data, even if it can reliably *intra*polate. For example, if we train a
+neural network to drive a car in a track, we will have no idea about how it will behave on a different
+track until it actually drives on it. In fact, given training data that is biased enough, neural networks
+can learn to pick up non-obvious objects surrounding the track ([look here](https://youtu.be/qvRja-Veec4?t=751)
+for a neural network that learned to steer whenever it saw a particular table next to the track).
+
+On the other hand, if we make a lane-detecting algorithm, we will know for certain that it will
+behave just as reliably on any track as long as the lane lines are visible. However, such feature-engineering
+has its own drawbacks, namely the inability to generalize. While making such an algorithm, we must come up
+with and handle all possible cases that the algorithm will encounter, because if it encounters a situation
+that we did not consider, we know exactly what will happen: it won't work.
+
+So we need to find some middle-ground, some Goldilocks zone between an end-to-end deep learning model
+and a pipeline consisting of feature-engineering only, which will combine the best of both worlds. This
+will be the primary challenge of this project.
+
+I have decided to approach this by starting with some feature engineering for finding lanes and other objects
+in the scene and then helping the model generalize using reinforcement learning (RL). I will use the
+[CARLA simulator](http://carla.org/) (version 0.8.2, the stable release) to train my RL models and later
+test my models using both the CARLA simulator and the [donkeycar simulator](http://docs.donkeycar.com/guide/simulator/),
+which has tracks that more accurately represent the environment in which the donkeycar Oakland races are
+held. Instead of starting with a deep model, I will start with feature engineering and then
+augment/refine it with deep RL.
+
+Making a lane detector is not a *very* complex problem. The Udacity self-driving car nanodegree includes
+exactly that as their fourth project, so there are no less than a dozen GitHub repos that contain code for
+lane detection (just google it or search it up on YouTube). In fact, once you understand all the concepts
+involved, it can it can be implemented in an afternoon. At this point, I would suggest you watch a video on
+that or read through some blogpost that explains the pipeline, otherwise the following might not fully make
+sense.
+
+The biggest problems with the "advanced lane detection" algorithm are that:
+1. the perspective transform fails if the camera tilts (due to linear acceleration or turning)
+2. the algorithm can fail at hairpin bends and sharp turns in general if the lanes turn back into the camera frame
+3. the algorithm assumes that there is a single lane bounded by two lines
+4. the algorithm has no way to detect other vehicles, and even fails to detect lanes when another car blocks its field
+   of view
+
+
+I can think of the following solutions to these problems (in order):
+1. Assuming that the camera and the IMU are rigidly attached to the car, we can determine the tilt of the
+camera tilt measurements from the IMU and factor that into the perspective transform that is applied to
+the image.
+2. One way I can come up with to solve this problem is to somehow change the region of interest depending
+on the scene, but it is not obvious to me how we can do that. Maybe we can use deep learning for this? I am
+actually looking forward to suggestions in the comments about this.
+3. This may or may not be a problem depending on the rest of our code (I will look into this later).
+4. In order to detect other vehicles, we can use an object detector like a YOLO neural network, but it is not
+trivial (and impossible without some sort of calibration) to figure out how far the detected vehicles are.
+Finding the lanes when blocked by some vehicle/object will require some sort of simultaneous localization and
+mapping (SLAM) algorithm in order to synthesize information from previously seen frames (because any given
+section of the track will be captured in multiple consecutive frames and be visible in at least some of them
+even if it is blocked in some others; think about how you drive when there is a box truck right in front of
+you on the highway).
