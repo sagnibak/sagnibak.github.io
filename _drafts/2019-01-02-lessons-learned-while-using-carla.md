@@ -39,11 +39,33 @@ training data.
 
 So here is a little tutorial on how to use CARLA effectively to generate data.
 
-## Getting Data
+## The Simulator Server and the Python Client
 
 CARLA is composed of two fundamental parts: the simulator and the Python client library.
 The idea is that the simulator runs as a server, and the user can send commands to the server and
-receive images and sensor measurements using TCP by running a Python script.
+receive images and sensor measurements using TCP by running a Python script. It is necessary to
+use the Python client library that comes with the simulator. It is written in C++ for
+(a) performance and (b) smooth integration with the simulator which is also written in C++.
+
+Now, if you want to follow along, you have two options:
+1. If you have a computer with a decent GPU (I'd say at least a GTX 1060 or 1070), then you can go ahead
+and download the prebuilt binaries from [here](https://github.com/carla-simulator/carla/releases/tag/0.8.4).
+Do yourself a favor and don't try to build from source, unless you are on Linux and you know what you're doing.
+I'm using version 0.8.4, as I mentioned earlier.
+2. If you don't have the aforementioned setup but you want to play with the data, then ask me for the data I
+have collected in the comment section, and suggest some nice way of sharing over 20 gigabytes of data.
+
+I am including the client code that I used to collect data in the [repository]() for this project, but keep in
+mind that you will need to get the simulator in order to run it.
+
+Now, if you have the simulator, you need to grab [this script]() and put it in the `carla/PythonClient`
+directory. Next, start the simulator with the command `./CarlaUE4.sh -carla-server` on Mac/Linux or
+`CarlaUE4.exe -carla-server` on Windows. Finally, start the data collection script with `python3 <script>.py -i`.
+The `-i` flag is to instruct the script to save images to disk. It takes a few seconds to start, but once
+started, you should see a black PyGame window (this is because I turned off rendering on the PyGame window
+to improve performance). This window needs to be in focus, because essentially it will take in WASD (and other)
+keyboard input and pass it on to the server to control the car, and it will also listen for incoming image
+data and save it.
 
 Note: CARLA, at its heart, is a moderately demanding game made using Unreal Engine. And capturing data while
 driving is an even more graphically demanding task because it requires more images to be rendered. So you
