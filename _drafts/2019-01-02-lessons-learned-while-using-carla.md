@@ -1,6 +1,6 @@
 ---
 title: Lessons Learned while using CARLA
-subtitle: I went through it all so you don't have to
+subtitle: I went through it all so you don't have to + code
 tags: [self driving car, python, coding, simulator]
 ---
 I've had quite an adventure over the last three days trying to get what I want out of [CARLA](http://carla.org),
@@ -39,10 +39,11 @@ training data.
 
 So here is a little tutorial on how to use CARLA effectively to generate data.
 
-## Architecture
+## Getting Data
 
 CARLA is composed of two fundamental parts: the simulator and the Python client library.
-**_FINISH THIS_**
+The idea is that the simulator runs as a server, and the user can send commands to the server and
+receive images and sensor measurements using TCP by running a Python script.
 
 Note: CARLA, at its heart, is a moderately demanding game made using Unreal Engine. And capturing data while
 driving is an even more graphically demanding task because it requires more images to be rendered. So you
