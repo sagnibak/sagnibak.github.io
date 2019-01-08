@@ -9,14 +9,28 @@
 
 <url>
   <loc>https://sagnibak.github.io/</loc>
-  <lastmod>2019-01-02T20:51:03+00:00</lastmod>
+  <lastmod>2019-01-08T07:51:56+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
+  <loc>https://sagnibak.github.io/blog/how-to-use-carla/</loc>
+  <lastmod>2019-01-08T07:51:56+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
   <loc>https://sagnibak.github.io/blog/self-driving-car-overview/</loc>
-  <lastmod>2019-01-02T20:51:03+00:00</lastmod>
+  <lastmod>2019-01-08T07:51:56+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 
+<url>
+  <loc>https://sagnibak.github.io/aboutme/</loc>
+  <priority>0.50</priority>
+</url>
+
+<url>
+  <loc>https://sagnibak.github.io/tags/</loc>
+  <priority>0.30</priority>
+</url>
 
 </urlset>
