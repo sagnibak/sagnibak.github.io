@@ -77,14 +77,130 @@ large space will take exponential time, hence we will not be able to train with
 particularly large training sets. Hence, finding the optimal decision tree is
 NP-complete.
 
+In fact, the number of nodes to model some functions like the majority function
+(determining if there are more 1's than 0's in the input vector) and XOR
+(determining if there is an odd number of 1's in the input vector) is actually
+exponential in the dimension $d$ of the training data.
+
+### NP-Hard does not mean perfect tho
+
 One thing to note is that while a decision tree with unlimited depth can learn
 any discrete-valued function, it may not be able to model training data perfectly,
-if the data are themselves inconsistent. If we have $i \neq j$ such that $x_i = x_j$
+if the data are themselves inconsistent, since a function cannot map the same
+input to multiple outputs.
+
+Think about it: if your data say that you go hiking when it is raining, you have
+time, and the temperature is greater than 90°F, and you also *do not* go hiking
+when it is raining, you have time, and the temperature is greater than 90°F, what would you
+conclude by looking at the data alone, after forgoing all your knowledge about
+temperature and precipitation? You cannot both go hiking and also not go hiking
+at the same time. This is analogous to the fact that then there is no
+**function** that can correctly classify all your input data. Thus you cannot
+always perfectly classify your training data even if you are using a very complex
+hypothesis function (decision tree in this case).
+
+Formally, if we have $i \neq j$ such that $x_i = x_j$
 but $y_i \neq y_j$, i.e., the training set has different labels for the *same*
-example (due to overlapping distributions, for example), then we will not be able
-to classify the training data perfectly. However that still does not mean our model
-will not overfit. It certainly can. This was just a conceptual digression.
+example, then we will not be able
+to classify the training data perfectly since no function $f$ can satisfy $f(x_i)
+\neq f(x_j) : x_i = x_j$. However that still does not mean our model
+will not overfit. It certainly can.
+
+This actually happens quite frequently in real-life data, since we often do not
+want to model mathematical functions but probability distributions, which often
+overlap, leading to the same or similar points having completely different
+classifications. Fortunately, dealing with this is rather easy.
+
+### Coping with NP-Completeness
 
 We do know two (generally) great ways to deal with NP-completeness: trying the
 obvious thing (being greedy) and trying everything (something like branch-and-bound).
 To learn decision trees, the most common approach is to use a **greedy heuristic**.
+
+In order to be able to construct decision trees in reasonable amounts of time,
+the most common approach is to recursively grow the tree, by choosing the best
+split at each internal node. It turns out that this is linear in the number of
+training samples, thus even for relatively large data sets, your tree is ready
+before your tea is (I am quite proud of this).
+
+## Greedily Growing Your Tree
+
+In order to grow a decision tree greedily we first need to define a concrete
+data structure. In this article my trees are binary trees. Each internal node
+stores the feature to test (the splitting feature) and the splitting value for
+that feature, along with two subtrees. Each leaf node stores the classification
+(an integer representing the class for classification trees, and a real number
+for regression trees).
+
+```scala
+DecisionTree := LeafNode | InternalNode
+LeafNode := classification: Int | Real
+InternalNode := (split_feature: Int,
+                 split_value: Real,
+                 left_subtree: DecisionTree,
+                 right_subtree: DecisionTree)
+```
+
+From the definitions above we can see that if we want to construct a decision
+tree recursively, we need to find a splitting feature and a splitting value
+before we can make two recursive calls to the tree-growing function. We also
+need to determine how to simplify the problem for the recursive calls, and decide
+when to stop.
+
+Note that this is not the only way to define or build
+decision trees. Decision trees are a heavily researched machine learning algorithm
+and if you think you have a new idea about how to make decision trees, there
+are at least five papers on it if there aren't five textbooks describing it.
+
+If you want to follow along with a well-documented implementation of a decision
+tree that I made, please take a look at this implementation in my repository
+[visuaml](https://github.com/sagnibak/visuaml/blob/master/decision_trees/dtree.py).
+Note that in this implementation, I store the indices of the examples in the leaf
+node instead of storing a class, so that I can potentially calculate posterior
+probabilities of classes instead of just predicting the most frequent class.
+
+In the following discussion, let $S$ be the set of indices to
+consider at an internal node, i.e., if $S = \\{ 3, 5, 6 \\}$, then the internal
+node only considers examples $x_3, x_5, x_6$ which have labels $y_3, y_5, y_6$.
+
+### When to stop
+
+If all the examples being considered have the **same label**, then there is no need
+to split, and we can terminate tree growth by returning a leaf node.
+
+Formally, if $y_i = y_j \\ \forall i, j \in S$, then we return a leaf node containing
+the label $y_i$ where $i$ is any entry of $S$.
+
+Note that if we have **inconsistent** training data then it is possible that all the
+labels are not identical but we cannot make any split since all the points being
+considered are the same, i.e., $x_i = x_j \\ \forall i, j \in S$ but $\exists i,
+j \in S : y_i \neq y_j$. We need to detect this case and also terminate training
+by returning a leaf node. In this case one sensible thing to do is to pick the
+label that has occurs most often in the data being considered, i.e., $y_i : i \in S$.
+
+Here is a link to the
+[relevant part of my code](https://github.com/sagnibak/visuaml/blob/master/decision_trees/dtree.py#L221).
+
+This can be justified loosely with the following intuition: if in the training
+data we see that on rainy days when you have time and the temperature is greater
+than 90°F you go hiking on 2 occasions but you don't go on 7 occasions, then it
+is probably more likely that you will not go hiking in such a scenario. Hence,
+choosing the label with plurality should get you better accuracy in the long run,
+especially if your sample size is large enough (i.e., if your leaves contain
+enough elements), since that reduces the variance of the estimate of the probability
+of you going hiking given the scenario.
+
+We will also add more stopping criteria when we consider reducing overfitting.
+
+### How to split
+
+If we decide that we have not reached a stopping criterion, then we need to
+construct an internal node. Hence, we first need to choose a feature to split on
+and pick the best value to split at. The most optimal way to do this (for fitting
+the training data, at least) would be to try growing a full tree using every split
+at every level all the way to the leaves, but that is NP-complete, so we will
+use heuristics instead. For training classification trees, people tend to use
+[Gini impurity](https://en.wikipedia.org/wiki/Decision_tree_learning#Gini_impurity) or
+[entropy](https://en.wikipedia.org/wiki/Decision_tree_learning#Information_gain),
+while for training regression trees (not covered really covered here) people tend to use
+[mean squared error](https://en.wikipedia.org/wiki/Decision_tree_learning#Variance_reduction).
