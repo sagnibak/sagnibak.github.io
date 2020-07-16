@@ -25,3 +25,7 @@ tags
 
 # there is no need to upload the prebuilt site to GitHub
 _site/
+
+# don't upload installed gems
+vendor/
+.bundle/
