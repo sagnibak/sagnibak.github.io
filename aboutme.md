@@ -12,7 +12,7 @@ Currently I am double-majoring in Computer Science and Statistics at the
 University of California, Berkeley. I am part of the
 [CS Honors Program](https://eecs.berkeley.edu/resources/undergrads/honors).
 I have received the [Dean's Honor](https://lsadvising.berkeley.edu/policies/deans-listhonors)
-in every semester that it was offered so far (Fall 2018, Spring 2019, Fall 2020).
+in every semester that it was offered so far (Fall 2018, Spring 2019, Fall 2019).
 
 This semester I am Head TA for
 [CS 70](https://www.eecs70.org/) (Discrete Math and Probability Theory).
