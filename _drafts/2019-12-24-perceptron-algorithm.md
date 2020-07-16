@@ -2,7 +2,7 @@
 title: The Perceptron Algorithm
 subtitle: The first step towards an SVM
 mathjax: true
-tags: [perceptron, machine learning, cs 189, svm]
+tags: [perceptron, machine learning, svm]
 ---
 
 ## TL;DR
