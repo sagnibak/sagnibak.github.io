@@ -1,7 +1,7 @@
 ---
 layout: page
-title: About Sagnik Bhattacharya
-subtitle: Or why you might want to g̶o̶ ̶o̶n̶ ̶a̶ ̶d̶a̶t̶e̶ ̶w̶i̶t̶h̶ ̶m̶e̶ give me a job
+title: Sagnik Bhattacharya
+subtitle: Why you might want to g̶o̶ ̶o̶n̶ ̶a̶ ̶d̶a̶t̶e̶ ̶w̶i̶t̶h̶ ̶m̶e̶ give me a job
 ---
 My name is Sagnik (साग्निक/সাগ্নিক) Bhattacharya, but I often spell it _Sagnick_.
 You can use the pronouns he/him/his when you talk about me in English.
