@@ -14,10 +14,12 @@ University of California, Berkeley. I am part of the
 I have received the [Dean's Honor](https://lsadvising.berkeley.edu/policies/deans-listhonors)
 in every semester that it was offered so far (Fall 2018, Spring 2019, Fall 2019).
 
-This semester I am Head TA for
-[CS 70](https://www.eecs70.org/) (Discrete Math and Probability Theory).
-I manage assignments, oversee grading, and plan the general flow of the course.
-I also teach four 1-hour discussion sections each week, and hold office hours.
+This semester I am a TA for
+[CS 70](https://www.eecs70.org/) (Discrete Math and Probability Theory). In Summer 2020,
+I was Head TA for the same course. As Head TA,
+I managed assignments, oversaw grading, and planned the general flow of the course.
+As both TA and Head TA, my responsibilities include
+teaching two to four 1-hour discussion sections each week, and holding office hours.
 [This](https://github.com/sagnibak/cs70-su20-disc) GitHub repository
 contains notes from my discussion sections.
 
@@ -31,4 +33,4 @@ web app which visualizes the decision boundaries of different machine learning m
 different datasets. This project won the Best Data Visualization Hack award.
 
 I am fluent in English, Hindi, Bangla, French, Python, Scheme, SQL, Java, and BrainF**k.
-And I have a decent level of proficiency in Urdu, Sanskrit, Esperanto, C, C++, and Javascript.
+And I have a decent level of proficiency in Urdu, Sanskrit, Esperanto, C, C++, Rust, and Javascript.
