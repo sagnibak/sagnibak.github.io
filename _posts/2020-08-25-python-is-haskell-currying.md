@@ -304,5 +304,7 @@ reflects the fact that Lambda calculus, which is a framework where variable
 declaration, and function definition and application are the only possible
 actions, is enough to model all of computation.
 
-All the code in this post can be found
-[here](https://github.com/sagnibak/func_py/blob/master/curry.py).
+You can find all the code in this post
+[here](https://github.com/sagnibak/func_py/blob/master/curry.py). I would strongly
+suggest you read the docstrings to understand the design decisions I made, and
+all the features that the currying decorator provides.
