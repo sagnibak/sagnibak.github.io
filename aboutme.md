@@ -12,21 +12,29 @@ Currently I am double-majoring in Computer Science and Statistics at the
 University of California, Berkeley. I am part of the
 [CS Honors Program](https://eecs.berkeley.edu/resources/undergrads/honors).
 I have received the [Dean's Honor](https://lsadvising.berkeley.edu/policies/deans-listhonors)
-in every semester that it was offered so far (Fall 2018, Spring 2019, Fall 2019).
+in Fall 2018, Spring 2019, and Fall 2019.
 
-This semester I am a TA for
-[CS 70](https://www.eecs70.org/) (Discrete Math and Probability Theory). In Summer 2020,
-I was Head TA for the same course. As Head TA,
-I managed assignments, oversaw grading, and planned the general flow of the course.
-As both TA and Head TA, my responsibilities include
-teaching two to four 1-hour discussion sections each week, and holding office hours.
-[This](https://github.com/sagnibak/cs70-su20-disc) GitHub repository
-contains notes from my discussion sections.
-
-In Spring 2020, I was a TA for 
+<!-- In Spring 2020, I was a TA for 
 [CS 189](https://people.eecs.berkeley.edu/~jrs/189/) (Introduction to Machine
 Learning) and a Senior [Computer Science Mentor](https://csmentors.berkeley.edu/#/)
-for [CS 70](http://www.eecs70.org/) (Discrete Math and Probability Theory).
+for [CS 70](http://www.eecs70.org/) (Discrete Math and Probability Theory). -->
+
+This semester I am a TA for 
+[CS 189](https://people.eecs.berkeley.edu/~jrs/189/) (Introduction to Machine
+Learning). In Spring 2020 I was also a TA for this course.
+I designed, wrote, and coded a neural network package along with
+[Sophia Sanborn](https://www.linkedin.com/in/sophia-sanborn-214bbb161/)
+in addition to teaching a discussion section and holding office hours every
+week.
+
+In Summer 2020 I was Head TA for [CS 70](https://www.eecs70.org/)
+(Discrete Math and Probability Theory). In Fall 2020 I was a TA for the same
+course. As Head TA,
+I managed assignments, oversaw grading, and planned the general flow of the course.
+As both TA and Head TA, my responsibilities included
+teaching two to four 1-hour discussion sections each week, and holding office hours.
+[This](https://github.com/sagnibak/cs70-disc) GitHub repository
+contains notes from my discussion sections.
 
 I went to TreeHacks in February 2020 and built [this](https://ml-visualizer.herokuapp.com/)
 web app which visualizes the decision boundaries of different machine learning models on
