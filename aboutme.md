@@ -12,7 +12,8 @@ Currently I am double-majoring in Computer Science and Statistics at the
 University of California, Berkeley. I am part of the
 [CS Honors Program](https://eecs.berkeley.edu/resources/undergrads/honors).
 I have received the [Dean's Honor](https://lsadvising.berkeley.edu/policies/deans-listhonors)
-in Fall 2018, Spring 2019, and Fall 2019.
+in Fall 2018, Spring 2019, and Fall 2019. I am a member of
+[Upsilon Pi Epsilon](https://upe.berkeley.edu/), the CS Honor Society at Cal.
 
 <!-- In Spring 2020, I was a TA for 
 [CS 189](https://people.eecs.berkeley.edu/~jrs/189/) (Introduction to Machine
@@ -40,5 +41,5 @@ I went to TreeHacks in February 2020 and built [this](https://ml-visualizer.hero
 web app which visualizes the decision boundaries of different machine learning models on
 different datasets. This project won the Best Data Visualization Hack award.
 
-I am fluent in English, Hindi, Bangla, French, Python, Scheme, SQL, Java, and BrainF**k.
-And I have a decent level of proficiency in Urdu, Sanskrit, Esperanto, C, C++, Rust, and Javascript.
+I am fluent in English, Hindi, Bangla, French, Python, Scheme, SQL, C, Rust, Java, and BrainF**k.
+And I have a decent level of proficiency in Spanish, Urdu, Sanskrit, Esperanto, C++, and Javascript.
