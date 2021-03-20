@@ -70,6 +70,21 @@ dudes more than girls. Yet you see me on more dates with girls than with
 dudes (you actually don't because I don't go on dates, but humor me for a
 second, will ya?). How does that make any sense?
 
+# Something Fishy
+
+Let's say that I upload all my dates to Facebook, so Daddy Zucc is able to
+keep track of all my dates. How many dates should he expect to have to
+observe before concluding that I am bisexual?
+
+My first date is either a dude or a girl. If it is the former, then the
+first time Zucc sees me date a girl, he will know that I am bisexual. If my
+first date is a girl, then the logic is similar.
+
+# Estimating Probabilities
+
+# Bayesian Estimation
+
+# Testing Hypotheses
 
 # Remarks and Clarifications
 
